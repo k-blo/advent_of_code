@@ -35,9 +35,6 @@ data= [
 # ]
 
 
-
-
-
 from itertools import product
 cartesian_product = list(product([0,1,-1],[1,-1,0])) 
 cartesian_product.remove((0,0))
@@ -78,8 +75,6 @@ def part1():
 
     print("Solution 1: ")
     print (count_flashes)
-part1()
-
 
 def part2():
     global grid
@@ -95,4 +90,5 @@ def part2():
             print (i+1)
             return
 
+part1()
 part2()
