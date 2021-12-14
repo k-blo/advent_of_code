@@ -299,7 +299,7 @@ for i in range(3): N += i if i == 1 else 100
 print(N)
 
 
-### lambda arguments : expression
+## lambda arguments : expression
 x = lambda a : a + 1 if a == 5 else 100
 print(x(5)) 
 print(x(1)) 
