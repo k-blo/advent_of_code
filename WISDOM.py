@@ -218,3 +218,88 @@ if ("1" or "2") in string:
 substrings_we_search = ["1", "2", "7", "9"]
 if any(substring in string for substring in substrings_we_search): #iterator that searches for substrings
     substrings_found = True
+
+
+
+# https://www.pythonsheets.com/notes/python-generator.html
+####### generators empty themselves
+gen = (i for i in "this_is_a_generator")
+print(list(gen))
+print(list(gen))
+
+
+g = (x for x in range(6))
+a,*c = g
+print(c)
+
+
+print(*(x for x in range(3)))
+
+def Generator():
+    yield from range(5)
+
+print (list(Generator()))
+print(*Generator())
+for i in Generator():
+    print (i)
+
+
+
+
+### flatten lists
+nested_list = [[1,2],[3,4]]
+flatten_list = [val for sublist in nested_list for val in sublist]
+print (flatten_list)
+
+
+
+### count element in list (also works for strings)
+how_many_a = ["a", "list", "with", "a"].count("a")
+print("string is this".count("string"))
+
+
+## find largest tuple
+tuple_list = [(1,6), (99,1) ]
+largest_tuple_by_first_value = max(tuple_list, key=lambda i:i[0])
+largest_tuple_by_second_value = max(tuple_list, key=lambda i:i[1])
+
+### [::2] every other value, starting with the first
+print([1,2,3,4][::2])
+
+
+## read file in one line: [line.strip() for line in open(path)]
+
+
+
+# REDUCE
+from functools import reduce
+
+def my_return_function(a,b):
+    print(a + b )
+    return a+b
+reduce(my_return_function, [1,2,3,4,5,6,7,8])
+
+
+
+######## factorial
+print ("FACTORIAL: ")
+factorial = lambda num : 1 if num <= 1 else num*factorial(num-1)
+print (factorial(5))
+
+
+### forloop one liner
+N = 1
+for i in range(3): N += i
+print(N)
+
+
+### forloop one liner with conditions
+N = 1
+for i in range(3): N += i if i == 1 else 100
+print(N)
+
+
+### lambda arguments : expression
+x = lambda a : a + 1 if a == 5 else 100
+print(x(5)) 
+print(x(1)) 
