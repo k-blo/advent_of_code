@@ -134,6 +134,20 @@ print (instance.z)
 print (instance[0])
 
 
+from itertools import permutations, combinations, combinations_with_replacement
+### pays attention to order, generates more results
+print ("PERMUTATIONS: ", list(permutations([1,2,3,4,5],2)) )
+### doesn't add (5,1) if (1,5) is already in there
+print ("COMBINATIONS: ",  list(combinations([1,2,3,4,5],2)) )
+
+### for coordinates
+print ("PERMUTATIONS: ", list(permutations([0,1,-1],2)) )
+print ("COMBINATIONS: ",  list(combinations([0,1,-1],2)) )
+print ("combinations_with_replacement: ",  list(combinations_with_replacement([0,1,-1],2)) )
+
+
+
+
 
 ##### this is again different from permutations and combinations
 from itertools import product
@@ -251,7 +265,8 @@ nested_list = [[1,2],[3,4]]
 flatten_list = [val for sublist in nested_list for val in sublist]
 print (flatten_list)
 
-
+### find out how deeply nested a list is
+depth = lambda L: isinstance(L, list) and max(map(depth, L))+1
 
 ### count element in list (also works for strings)
 how_many_a = ["a", "list", "with", "a"].count("a")
@@ -262,6 +277,12 @@ print("string is this".count("string"))
 tuple_list = [(1,6), (99,1) ]
 largest_tuple_by_first_value = max(tuple_list, key=lambda i:i[0])
 largest_tuple_by_second_value = max(tuple_list, key=lambda i:i[1])
+
+
+### add tuples together
+def Add_Tuples(tuple1, tuple2):
+    return tuple(sum(x) for x in zip(tuple1, tuple2))
+
 
 ### [::2] every other value, starting with the first
 print([1,2,3,4][::2])
