@@ -61,6 +61,22 @@ print ("abcdefgh"[:2])
 ### after the first 2 characters
 print ("abcdefgh"[2:])
 
+# insert
+string = "this is a string"
+# index_of_character 
+i = string.index(" is ")
+
+# cuts off the string BEFORE the word " is"
+print(string[:i])
+
+# cuts off the string BEFORE and WITH the word " is"
+print(string[i:])
+
+# inserts another string before " is"
+string = string[:i] + "INSERT" + string[i:]
+print(string)
+
+
 
 ### this also works for lists
 print (list(range(0,10)[2:]))
@@ -82,6 +98,11 @@ dict0 = {
 print(dict0.get("height") )
 print(dict0.get("height", "").startswith("1") ) ### return True if value starts with 1
 print(dict0.get("height", "").endswith("cm") ) ### return True if value ends with cm
+
+
+### find largest key
+dict1 = {"a key": 19, "another": 299}
+largest_key = max(dict1, key=dict1.get)
 
 
 
@@ -139,6 +160,7 @@ from itertools import permutations, combinations, combinations_with_replacement
 print ("PERMUTATIONS: ", list(permutations([1,2,3,4,5],2)) )
 ### doesn't add (5,1) if (1,5) is already in there
 print ("COMBINATIONS: ",  list(combinations([1,2,3,4,5],2)) )
+print ("combinations_with_replacement: ",  list(combinations_with_replacement([1,2,3,4,5],2)) )
 
 ### for coordinates
 print ("PERMUTATIONS: ", list(permutations([0,1,-1],2)) )
@@ -154,8 +176,21 @@ from itertools import product
 cartesian_product = list(product([0,1], [1,0])) 
 print (cartesian_product)
 
+### can be used to get adjacent coordinates
+from itertools import product
+surrounding_coordinates = list(product([0,1,-1],[1,-1,0])) 
+surrounding_coordinates.remove((0,0))
+print (surrounding_coordinates)
 
+### returns surrounding coordinates, cuts off those going outside the grid (below 0 or above max)
+def Adjacent(x,y, xmax, ymax):
+    return [(xd+x,yd+y) for xd, yd in surrounding_coordinates
+            if not -1 in [xd+x,yd+y] 
+            and xd+x <= xmax 
+            and yd+y <= ymax]
 
+print ("ADJACENT: ", Adjacent(2, 2, 4, 2)) ### will cut off coordinates below y=2
+print ("ADJACENT: ", Adjacent(2, 2, 4, 3)) ### will cut off nothing and return all 8 surrounding coordinates
 
 ### delete list items by index
 a_list = [1, "evil_value", 9]
@@ -277,7 +312,7 @@ print("string is this".count("string"))
 tuple_list = [(1,6), (99,1) ]
 largest_tuple_by_first_value = max(tuple_list, key=lambda i:i[0])
 largest_tuple_by_second_value = max(tuple_list, key=lambda i:i[1])
-
+print ("largest tuple", largest_tuple_by_second_value)
 
 ### add tuples together
 def Add_Tuples(tuple1, tuple2):
@@ -324,3 +359,41 @@ print(N)
 x = lambda a : a + 1 if a == 5 else 100
 print(x(5)) 
 print(x(1)) 
+
+## count iterables (works for lists, dicts, strings)
+from collections import Counter
+print(Counter("an iterable").most_common())
+print(Counter("an iterable").most_common()[0])
+
+# binaries to decimal
+print(int("010101", 2))
+
+def hxbin(hex_string): ### hex to binary
+    return bin(int(hex_string, 16))[2:].zfill(len(hex_string)*4) ##zfill makes sure the left trailing 0s are not cut off
+
+
+# numpy
+import numpy as np
+a = np.arange(10).reshape(2, 5)
+print(a)
+print(a.shape)
+print(a.ndim)
+print(a.size)
+
+## multidimensional splicing
+# from both elements, return index 2:
+print(a[0:2, 2]) 
+
+## return the matrix from index 2 to 4
+print(a[0:2, 2:4]) 
+
+
+
+##### assert
+def function_to_debug(input):
+    return input + 1
+
+test_input = 2
+test_result = 3
+
+assert function_to_debug(test_input) == test_result

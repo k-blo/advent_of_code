@@ -1,5 +1,7 @@
 
 
+print("hello > 1".split("j"))
+
 
 
 report = [
@@ -206,14 +208,7 @@ report = [
 ]
 
 
-for number1 in report:
-    for number2 in report:
-        for number3 in report:
-            if number1 + number2 + number3 == 2020:
-                print number1
-                print number2
-                print number3
-                print number1*number2*number3
+
 
 
 

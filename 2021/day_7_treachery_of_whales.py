@@ -32,7 +32,7 @@ def part2():
     fuel_experiments = []
     for i in range(len(data)):
         fuel = 0
-        for crab in data:
+        for crab in data: 
             distance = abs(crab - i)
             fuel += sum(range(1,distance+1))
         fuel_experiments += [(i, fuel)]

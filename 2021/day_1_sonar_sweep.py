@@ -36,7 +36,6 @@ part_1()
 
 
 def part_2():
-    previous_depth = None
     differences = []
     for count, depth in enumerate(data):
 
@@ -50,3 +49,23 @@ def part_2():
     print(len([d for d in differences if d > 0]))
 
 part_2()
+
+
+
+
+### more concise version
+def part_1v2():
+    differences = [data[index+1]-data[index] for index, d in enumerate(data[1:])]
+    print ("Part 1 solution: ")
+    print(len([d for d in differences if d > 0]))
+
+part_1v2()
+
+
+def part_2v2():
+    Window = lambda from_index: sum([data[from_index + i] for i in range(3)]) 
+    differences = [ Window(index+1)-Window(index)  for index, d in enumerate(data) if index + 3 < len(data)]
+    print ("Part 2 solution: ")
+    print(len([d for d in differences if d > 0]))
+
+part_2v2()
