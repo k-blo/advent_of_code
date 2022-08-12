@@ -52,25 +52,25 @@ def calc_values(id, values):
             return 0
 
 
-def Decode(binary):  ## a long binary string
+def Decode(binary):  # a long binary string
     global versions
 
     packet_version = dez(binary[:3])  # first 3 bits are packet version
     packet_type_id = dez(binary[3:6])  # next 3 bits are packet type
 
-    remaining_bits = binary[6:]  ### packet info can be discarded
+    remaining_bits = binary[6:]  # packet info can be discarded
 
     versions.append(packet_version)  # required for part 1: summing up packet versions contained in binary
 
-    if packet_type_id == 4:  #### type 4s contain literal values, encoded in 4 bits
+    if packet_type_id == 4:  # type 4s contain literal values, encoded in 4 bits
         return Type4(remaining_bits)
 
     else:
         length_type_ID = remaining_bits[0]  # length is encoded in bit-length (0) or number of packages (1)
         remaining_bits = remaining_bits[1:]  # can be cut off
 
-        if length_type_ID == "0":  ## here we know the length of the binary string containing the sub-packets
-            length = 15  ### length of the binary saying how many subpackets we get
+        if length_type_ID == "0":  # here we know the length of the binary string containing the sub-packets
+            length = 15  # length of the binary saying how many subpackets we get
             sub_packet_size = dez(remaining_bits[:length])
             remaining_bits = remaining_bits[length:]
             sub_packet = remaining_bits[:sub_packet_size]
