@@ -11,6 +11,8 @@ function sum(list) {
 }
 
 
+
+
 // open file
 var fs = require("fs");
 var text = fs.readFileSync("./day_1_input.txt", "utf-8");
