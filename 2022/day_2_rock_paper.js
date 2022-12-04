@@ -4,15 +4,9 @@ test_input = `A Y
 B X
 C Z`
 
-
-
-
+// load file
 var fs = require("fs");
 var text = fs.readFileSync("./day_2_input.txt", "utf-8");
-
-
-
-
 
 // use
 var data = test_input
@@ -27,26 +21,19 @@ split_data.forEach(element => {
     parsed_data.push(element)
 });
 
-
-
-
-
-
+// part 1
 const P1 = "ABC"
 const P2 = "XYZ"
 
 function play(opponent, you) {
-    var o_move = P1.indexOf(opponent) + 1
     var y_move = P2.indexOf(you) + 1
+    var o_move = P1.indexOf(opponent) + 1
     var outcome = 0 // you lose - default assumption
-
+    
     // value correction for case scissors / rock
-    if (y_move == 1 && o_move == 3) {
-        y_move = 4
-    }
-    if (y_move == 3 && o_move == 1) {
-        o_move = 4
-    }
+    var y_move = y_move == 1 && o_move == 3 ? 4 : y_move
+    var o_move = y_move == 3 && o_move == 1 ? 4 : o_move
+
     // you win
     if (y_move > o_move) {
         outcome = 6
