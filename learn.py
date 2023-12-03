@@ -153,6 +153,7 @@ print("combinations_with_replacement: ", list(combinations_with_replacement([0, 
 ##### this is again different from permutations and combinations
 from itertools import product
 
+print("CARTESIAN PRODUCT")
 cartesian_product = list(product([0, 1], [1, 0]))
 print(cartesian_product)
 
